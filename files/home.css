@@ -1,0 +1,227 @@
+/* css is really fucking easy LMFAO */
+/* well at least for me */
+
+:root {
+  --ink: #f2f2f2;
+  --text: #8a8a8a;
+  --text-strong: #c4c4c4;
+  --line: #3a3a3a;
+  --hazard: #f2b705;
+  --page-bg: #0b0a0a;
+  --body-font: "Segoe UI", Tahoma, Verdana, sans-serif;
+  --mono-font: Consolas, "Lucida Console", "DejaVu Sans Mono", monospace;
+  /* s2x is lucida console medias! */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  height: 6.25rem;
+  padding: 0 1.75rem 1.2rem;
+  background: linear-gradient(180deg, #222 0%, #101010 55%, #050505 100%);
+  border: 1px solid var(--line);
+  border-bottom-color: #000;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.85);
+}
+
+.nav-link {
+  --ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: relative;
+  display: inline-block;
+  padding: 0 0.6rem 0.55rem;
+  color: #777;
+  font-size: 1.1rem;
+  text-decoration: none;
+  text-shadow: 0 1px 2px #000;
+  transition: color 0.25s var(--ease);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 50%;
+  height: 4px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width 0.25s var(--ease);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #fff;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--hazard);
+  outline-offset: 4px;
+}
+
+.page {
+  --bg-solid: 20rem;
+  --bg-height: 40rem;
+  position: relative;
+  min-height: calc(100vh - 6.25rem);
+  background: var(--page-bg);
+  overflow: hidden;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--bg-height);
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.2) 100%),
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("homeBG.png"),
+    radial-gradient(ellipse at 55% 40%, rgba(60, 66, 62, 0.35) 0%, transparent 60%),
+    linear-gradient(180deg, #0b0c0b 0%, #050505 100%);
+  background-size: cover, cover, cover, auto, auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 var(--bg-solid), transparent var(--bg-height));
+  mask-image: linear-gradient(180deg, #000 0, #000 var(--bg-solid), transparent var(--bg-height));
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+.main {
+  max-width: 48rem;
+  padding: 4rem 1.25rem 5rem clamp(1.25rem, 17vw, 12rem);
+}
+
+.header h1 {
+  margin: 0 0 0.9rem;
+  line-height: 0;
+}
+
+.logo {
+  display: block;
+  height: 8rem;
+  width: auto;
+  margin-left: 1.25rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.header p {
+  max-width: 30rem;
+  margin: 0;
+  text-shadow: 0 1px 3px #000;
+}
+
+.contents {
+  margin-top: 3.5rem;
+}
+
+h2 {
+  margin: 3rem 0 1rem;
+  color: var(--ink);
+  font-family: var(--mono-font);
+  font-weight: 700;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px #000;
+}
+
+.contents>h2:first-child {
+  margin-top: 0;
+}
+
+h3 {
+  margin: 1.5rem 0 0.25rem;
+  color: var(--text-strong);
+  font-family: var(--body-font);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 3px #000;
+}
+
+p {
+  max-width: 40rem;
+  margin: 0 0 1rem;
+  text-shadow: 0 1px 3px #000;
+}
+
+a {
+  color: var(--text-strong);
+}
+
+a:hover {
+  color: var(--ink);
+}
+
+.warning {
+  padding: 0.75rem 1rem;
+  color: var(--text-strong);
+  background: rgba(0, 0, 0, 0.55);
+  border-left: 4px solid var(--hazard);
+}
+
+@media (max-width: 40rem) {
+  .nav {
+    height: 4.5rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .page {
+    min-height: calc(100vh - 4.5rem);
+    --bg-solid: 15rem;
+    --bg-height: 30rem;
+  }
+
+  .main {
+    padding-top: 2.5rem;
+  }
+
+  .logo {
+    height: 4rem;
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .nav-link,
+  .nav-link::after {
+    transition: none;
+  }
+}
